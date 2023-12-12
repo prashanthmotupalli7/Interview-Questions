@@ -1,0 +1,249 @@
+How to handle custom Exception :
+------------------------------------
+we need to create an exception class which extends  run time exceptions
+
+ before 3.2
+@HandleException Resolver
+@ExceptionalHandler
+
+after 3.2
+@controllerAdvice:  promote a unifies exception handling throughout a whole application
+In Spring 5 : Response StatusException : fastest way to basic error handling  for our Rest API's
+
+
+
+Try :  to keep the risky code
+catch : to handle exception
+throw : to throw exception to caller
+throws : to ignore exceptiom
+finally: to write clean u code
+
+SPRING MVC FLOW 
+===============
+Dispacther Servlet :
+Act as front controller in our spring mvc
+when we send a request will be recevied by Dispatch servlet
+It will talk handle mapper to indentify the controller
+than dispatch servlet will call the controller method 
+controller will return model and view Object
+model will contain data view is logical view name
+with that viewname dispatcher servlet will talk to view resolver
+that will specify physical loction of view 
+with model data and view location dispatcher will talk to view component
+which will render model data and view component  and it will return response
+that response dispatched to end user
+
+Controller Based Exception ---used handle exception at single controller class
+Global Exceptional Handler --- Used handle exceptions in all controller 
+
+create a exception handler class anotated with @ControllerAdvice
+
+Handler Exception Resolver
+
+AOP :
+-----
+Aspect Oriented Programming 
+Aims to increase modularity by allowing the sepearation of cross cutting concerns
+process of applying services or external services as trasaction management or logging to 
+our application class without modifying the code
+this service also called cross cutting concern
+
+
+Aspect : modularization of a concern that cuts across multiple classes
+Join Point : any poin in u r program such as method execution, exceptional handling, field acces
+spring support only method execution join point
+Advice: it represent action taken by aspect at particular loin point 
+Pointcut : it is an expression of AOP that marches join point
+
+___________________
+
+Spring boot automatically configures whenever it find dependency in class path
+
+Keyfeatures 
+----------
+starters-- used to develop application  based on starters provide in pom.xml
+autoconfiguration-- configurer based dependecies in class path
+externalized configuration--config for diff env
+acutator-- monitor,health check
+embedded servlet container support---default ---it provide tomcat server on port 8080
+____________
+
+Spring boot Autoconfigurarion ---autmatically configure u r spring app--based on
+jar dependencies that u have added in class path
+
+_____________
+
+Spring boot internally work run
+Execution starts with main method---internally call run method to boot strap -spring boot app
+main method internally call SpringApplication.run()
+SpringApplication.run()--performs boot strap of spring boot application
+starts stopwatch --to identify time taken bootstrap the spring boot app
+prepare env to run our spring boot app(dev,prod,qa,uat)
+print banner--spring boot logo on console
+start Ioc container based on class path
+Refresh context
+___________________
+
+Ways to create spring boot app--using springboot intilizer,STS, Spring boot CLI
+_________________
+
+@Spring boot Anotation
+@EnableAutoConfiguration -- enable autoconfig when spring boot find dependencies in class path
+@CompanenScan--- Used to scan spring components ---ex- packages and sub packages
+@SpringBootConfiguration--use @configuration-- to provide java based configuration
+XML,Java and Annotation 
+
+__________________________________
+
+Spring boot Starters  buitlt to address compatability with lots  depencey and application
+spring-boot-starter-web ---it is combination of multiple dependencies 
+it will manage compatible versions
+used to develop spring mvc or rest
+spring boot starter jpa---adds hibernate and jpa to your applicaton
+spring boot security ---- spring security web,config
+
+SpringBoot provide - 30+starters 
+
+ex
+Spring boot start-test ----it uses junit ,mockito etc
+____________________________________
+
+Spring boot starter parent----provide  default version of java,maven plugins
+and it provide default version 
+you can oveeride version in pom.xml
+---provide default version as 1.8
+it will take care of adding version for starter dependencies
+_____________________________________
+Types of project we can develop spring boot 
+
+spring boot starter --to create utilities ,stand alone project and desktop based projects
+Spring boot starter web--- Spring MVC or rest app
+Spring boot starter webfluc --- to develop spring boot reactive web app
+____________________________________________
+
+Default embaded server --by default it provide Tomcat servers
+
+Spring boot support --- 3 servers Tomcat,Jetty and Undertow
+if u want use Jetty or undertow
+we need to exclude tom cat from spring boot starter web 
+then we need to  spring starter jetty dependency in pom.xml
+________________________________________________
+
+
+@Bean
+private RestTemplate restTemplate(){
+return new RestTemplate();
+}
+
+
+in Service
+@Autowired 
+private RestTemplate restTemplate 
+
+Department department=restTemplate.getForObject(url+user.getDepartmentId,Department.class) 
+
+
+@Bean : indicates that method produces bean managed by spring container
+usually declared in configuration class.
+
+@Autowired : used to inject bean automatically
+used in constructor ,setter and field injection
+
+@Spring Boot Appication-->
+== @EnableAutoConfiguration +@SpringBootConfiguration+@ComponentScan
+@SpringBootConfiguration-internally uses @configuration--XML,Java 
+@EnableAutoConfiguration--enables auto configuration based on class path and project settings
+ @ComponentScan: enables component scanning --all components discovered and regitered  as beans in applictaion context
+
+ApplicationContext
+---------------------
+central interface in Spring Application 
+provides configuration information to application'
+interface provide getBean()--to retrive bean from spring container
+ApplicationContext represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. 
+The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata.
+ The configuration metadata is represented in XML, Java annotations, or Java code.
+Implementation ---ClassPathXmlApplicationContext,AnnotationConfigApplicationContext
+
+
+Spring Data JPA 
+____________
+we need to add my sql dependency in pom.xml
+ 
+provide database details in application.properites like url,username, password and dalact
+entity class --we need to provide default and parameter condtructor
+we need add interface --
+interface extends JpaRepository<EntityClass,PrimarKeyDataType>{
+}
+go to controller
+@Autowired 
+IntefaceName interfaceName;
+we use@Query in inteface of repo above the method declaration
+
+__________
+
+Spring Boot Acutator:
+----------------------
+It used to monitor application in production
+it provide variuos metrics of application including health,info and status etc.,
+
+ways to call external service
+----------------------------
+2 ways ---RestTemplate Class, WebClient(recommanded)
+add dependency--spring boot-starter-webflux
+webclient config class--getWebClientBuilder()
+sevice class we hit url get data
+
+
+Controller:
+---------
+Used to handle http request
+responsible for receiving incomming requests 
+from client -processing  them and returning appropriate response.
+it typically returns a view object
+--which is responsible for rendering a web page that can be viewed by user
+
+Rest Controller------------
+RestController is a special type of Controller 
+that is used to handle RESTful requests.
+it returns response body object
+it contains data which is sent back to client in the format such as Json or XML
+ 
+
+HTTP Status Code :
+
+200 Ok : indicates request was successful
+201 Created : request was successful  and resource was created, commonly used in POST operation
+204 No Content : request was successful but not return any content often used in  Delete Operation
+400 Bad Request : request was invalid , client should not repeat request without modification
+401 Unauthorized : client must authenticate itself to get the requested response ...it means provided credentials are not valid
+403 Forbidden : clients does not have access to right content
+404 Not Found : The server could not find the requested resource. 
+This is often encountered when a URL is incorrect or when trying to access a resource that doesn't exist.
+405 Method Not Allowed : when user trying to access Ex : using a post request on a read-only endpoint
+500  Internal Server Error : The server encountered a situation it doesn't know how to handle.
+503 Service Unavailable:The server is not ready to handle the request. 
+This can be due to maintenance or server overload.
+
+
+Spring Boot Security 
+----------------------
+ We need to add spring boot security dependency to our project
+ it will generate system username and password
+for creating our own username and password we need to create class that extends WebSecurityConfigAdapter
+we need to annotate that class with @Configuration and @ Enable autoconfiguration
+
+Acheving security by fetching username and password from database
+to achecive that  we  taken AutheticationProvider()
+we create object of DaoAutheticationProvider
+we assigned userDetailsService object and we have assigned password Encoder
+
+SpringBoot OAuth2
+--------------------
+we have add dependency  - spring security OAuth2 AutoConfigure in pom.xml
+we have anotate class with @EnableOAuth2Sso
+
+add properites of oauth2 in your application properties
+
+
+

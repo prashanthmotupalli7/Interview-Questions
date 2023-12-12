@@ -1,0 +1,65 @@
+Java 3.5 years Experience Interview Questions
+---------------------------------------------------------
+Polymorphism
+Exceptional Handling
+Hash Map & Internal working 
+Concurrent Hash Map
+Transient and volatile keyword
+Static and final keyword 
+callable interface
+what are HTTP methods
+Use Stream API print the number starts with 1 from the list of numbers
+write a program to reverse string 
+Comparator and Comparable
+Shallow copy and Deep copy
+what are microservices 
+what is spring boot application
+how do you connect to database in your application
+Dependency Injection
+@autwired and its type
+@bean and its life cycle
+Query parameter vs Request Param
+Application context in spring boot
+@componet 
+Primary key and foreign key in SQL
+Joins
+Views
+fetch top ten rows in table
+Normal Forms
+Lambda expressions
+Stream API method 
+Consumer and supplier 
+path variable in spring boot 
+Daily routine in your work
+IoC container types
+Application Context
+Cross Join
+Save point in oracle
+Transaction management --JPA
+Bean validation
+Path param vs Request param
+Spring boot application life cycle 
+Mappings(onetoone....manytomany)
+Fibonacci
+can we call static method in non static method 
+and non static method in static method
+Child -parent inheritances
+
+******Inheritance Important Points************
+
+Parent p=new Parent();
+p.parentMethod();
+p.childMethod(); //CE child method not defined in parent
+
+Child c=new Child();
+c.parentMethod();
+c.childMethod();
+c.overloadedMethod();  --overloaded method in child
+
+Parent p=new Child();
+p.parentMethod();
+p.childMethod(); //CE we can child specific methods with parent reference
+((Child) p).childMethod();
+
+Child c=new Parent(); //CE we cannot create instace parent with child reference
+call by value, call by reference

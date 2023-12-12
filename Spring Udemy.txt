@@ -1,0 +1,934 @@
+Spring Boot Chad Darby code::
+----------------------------------
+
+traditional spring application is really hard
+which jar dependency do I need 
+How to set up configuation (xml or Java)
+How do i install the server (Tomcat & Jboss)
+------------
+Spring Boot
+minimize the amount of manual configuration
+perform autoconfiguration based on props files and JAR classpath
+helps to resolve dependency conflicts(maven & gradle)
+Embeded Server like tomcat,jetty and Undertow
+
+Spring Boot was developed on top of spring frame work
+Spring Intializer
+----------------
+select u r dependencies
+create a maven/gradle project
+
+Import Project in Eclipse,Intellj
+
+Deploy spring Boot Apps
+---------------------------
+Spring Boot Apps can be deployed in the traditional way
+Deploy war file to an external server tomacat,jboss and websphere 
+
+
+Does spring boot  replace Spring MVC, Spring Rest etc?
+No, Instead , Spring boot actually use those technologies
+
+Does Spring boot run code faster than regular Spring code
+No
+Behind the scenes,Spring Boot use same code of spring  framework
+
+
+Spring Boot Initialzr
+-------------------
+ Maven
+    when building your java project, you may need additional Jar files
+    Ex: Spring,hibernate, Commons Logging, JSON etc...
+One approch is to download JAR file from each project website
+manually add the JAR files to u r build path /class path
+
+Go to browser :
+start.spring.io
+
+spring boot take latest versions (Avoid snapshot versions)
+Give project details 
+--------------
+Group, Artifact name and description and packaging name
+Add dependecies 
+------Spring web
+click on Generate 
+it will download zip folder
+we need to unzio it 
+
+Go to IDE --select unzip folder with all subfolders open it 
+when we run application it will run on tomcat server on port 8080
+
+
+Spring Boot Rest Controller:
+----------------------------
+
+create a class anotated with @Restcontroller
+
+Spring Boot website official
+------------------------
+lightweight with Java POJOS
+Dependency Injection to promote loose coupling 
+minimize boilerpate jave code
+-----------
+
+Core Conatiner :
+----------
+bean factory is for creating beans and managing beans
+AOP : add functionality to objects declaratievely 
+-logging ,security,transaction,etc..
+Data AAccess Layer:: JDBC,ORM 
+WebLayer
+
+Spring Projects:
+-------------
+Spring modules built on top of Spring framework
+
+only use what need
+Spring Cloud, Spring Data
+Spring Batch, Spring security
+Spring Webservices , Spring LDAP 
+others
+
+
+Spring Boot Maven 
+-----------------------
+Maven project management tool
+most popular use of maven is build management and dependencies
+
+Maven Soulution 
+------------
+tell Maven the projects you are working with
+Spring, Hibernate etc.,
+maven will go out and download the jar files for those project
+maven will make jar files available during compile/run
+
+
+Standard Directory Structure
+-------------------------------
+src/main/java ---your java source code
+src/main/resources--properties/config files used by your app
+src/main/webapp--JSP files and web files other web assets(images,css,js,etc)
+src/test --unit testing code and properties
+target- destination directory for compiled code .automatically created by maven
+
+
+POM.xml
+-----------
+project meta data - project name,versionetc output file type: JAR,WAR.,
+dependencies --list of projects we depend on spring, hibernate etc.,
+plugins -- additional custom task to run : generate JUNIT test reports etc.,
+
+project coordinates ::
+--------------------
+Group Id : name of company, organization ::;convention to use reverse domain name :: com.luv2code
+Artifact Id : name of the project :: mycoolap
+version:: specific release version like :: 1.0,1.6,2.0
+if project under active development:: 1.0-SNAPSHAOT
+
+dependency::
+Group ID ,artifact ID and version id(optional)
+best approach use version id aswell
+
+----------------------------------
+Lets explore project structure 
+Maven wrapper files
+mvnw == allos u to run a maven project
+no need to have maven or installed or present on your path
+if correct version of maven not found on your computer --it automatically
+downloads correct version
+2 files mvnw.cmd  for MS windows  > mvnw clean compile test
+mnvw.sh for  Linux/max  $./mnvw clean compile test
+
+A collection of maven dependencies of compatible versions --Spring boot starters
+
+spring -boot-started-web  (Save developer from having list of individual dependencies)
+---------------------------
+spring -web
+spring -webmvc
+hibernate-validator
+tomcat
+json..
+
+Maven plugin::
+to package executable jar or war archive
+can also easy run the app
+
+-------------------------
+
+application. properties
+#configure server port
+server.port=8484
+
+#configure my props
+coach.name=Micky Mouse
+team. name=The Mouse Crew
+
+@RestController
+public class FunRestController{
+@Value("${coach.name}")
+private String coachName
+@Value("${team.name}")
+private String teamName;
+
+By default, Spring Boot will load static resources from "/static" directory
+Examples of static resources HTML Files,CSS, JS.images,etc..
+
+Templates
+spring boot includes auto configuration for fallowing template engines
+Free Maker
+Thymeleaf
+Mustace
+
+Unit Test
+---------
+spring boot u can customized test
+
+Spring boot Starter ::
+-------------
+curated list of maven dependencies
+a collections of dependencies groiupe dtogether
+tesed and verifiedd by spring dev team
+makes it is much easier for developer to get started with spring
+reduces the amount maven configuration
+
+
+--------------
+Spring boot starter parent
+----------------------------
+spring boot starter-*
+specify version for spring boot 
+it inherits version from starter parent
+no need to list individual versions --great for maintenance
+
+Spring Boot Dev Tools
+-----------------------
+spring boot dev tools to the rescue
+automatically restarts u r application when code is updated
+simply add the dependency in u r pom file 
+no need to write additional code
+
+Intellij community Edition not support devtools by default
+selcet Preferences >Build,Execution,Deployment>Compiler
+check Box : Build project aytomatically
+
+Additional setting 
+
+Preferences > advanced settings 
+compiler section
+check box : Allow auto make to
+
+
+Spring Boot Actuator::
+-----------------
+Exposes endpoint to monitor and manage your application
+You easily get DevOps functionality out of the box
+simply add the dependency to your pom file
+rest end points are automatically added to your application
+Automatically exposes endpoints for metrics out of the box
+End points are prefixed with /actuator
+/health --checks the status of u r application    ---up/down
+/info-- endpoint can provide information about your application
+
+in u application.properties
+------------------------
+management.endpoints.web.exposure.include=health,info
+management.info.env.enabled=true
+
+by default info is empty 
+update u r application.properties with u r app info
+
+info.app.name=My Super Cool App
+info.app.description=A crazy and fun app, ypphoo!
+info.app.version=1.0.0
+
+/auditevents --- Audit events for your application
+/beans -- List of all bean registered in the spring application context
+/mappings-- List of all @RequestMapping paths
+By default only /health is exposed 
+to expose all acutator endpoints over HTTP
+# use wildcard "*"to expose all endpoints
+#can also expose individual endpoints with comma-delimited list
+management.endpoints.web.exposure.include=*
+
+
+
+
+Spring boot security
+-----------------------
+not to expose all of this information
+if use spring security 
+it will prompt login for username & password 
+by default username =user and password will come in console 
+
+we can also ovveride these default username and password in application.properties
+
+spring.security.user.name=bunty
+spring.security.user.password=tiger
+
+Custmizing Spring Security  for Spring boot Actuator 
+use a database for roles,encrypted passwords etc
+Exclude endpoints
+
+#Exclude individual end points with comma - delimited list
+management.endpoints.web.exposure.exclude= health,info
+
+Spring Boot running from the command line
+------------------------------------------
+2 options
+1 Use jave -jar 
+2 Use spring boot Maven plugin
+mnvw spring-boot:run
+
+> java -jar mycoolapp.jar
+
+
+Use Spring boot Maven plugin
+------------------------------
+add maven plugin generated by spring Initializr
+
+for packaging use ./mvnw package
+for fun ./mnvw spring-boot:run
+
+
+Spring boot Custom Application Properties
+-------------------------------------
+by defaul,spring boot reads information from a standarf properties files
+located at src/main/resources/application.properties
+
+you can define any custom poperties in this file
+your spring boot app can access properties by usig @value
+
+Spring Boot ccan be configured in the application.properties file
+server port,context path, actuator,security etc
+
+server.servlet.context-path=/mycoolapp (base path URL)
+
+Inversion of control::
+-------------------
+the approach of outsourcing the constuction and management of objects
+
+
+Spring Container :
+--------------------
+primary function
+create and manage objects(IOC)
+Inject object dependencies(DI)
+
+Spring Dpendency Injection
+---------------------------
+the dependency inversion principle
+the client delegates to another object 
+the responsibility of providing its dependencies
+
+
+Injection types::
+-----------------
+Constructor Injection--use when we have required dependencies 
+genrally recommended by spring.io developemnt team as d
+Setter injection--use when we have optional dependencies
+if dependency is not provided ,your app can provide reasonable 
+default logic
+
+Autowiring::
+-------------
+
+@component ---marks the class as spring bean
+A Spring bean is just a regular java class that is managed by spring
+@component also makes the bean avaialable for dependency injection
+@Autowired annotation tells spring to inject a dependency
+if u  only have one constructor then Autowired on constructor is optional
+
+
+component scanning ::
+-----------------------
+spring will scan u r java classes for special annotations @component etc.,
+automatically register the beans in the spring container
+
+@SpringBootApplication::
+@EnableAutoConfiguration - enables spring boot auto configuration support
+@ComponentScan-- enables component scanning for packages also recursively sub packages
+@Configuration -- Able to register extra with @Beans 
+or import other cinfiguration classes
+
+behind the scenes 
+------------
+create application context and registers all beans
+starts the embedded server tomcat etc.,
+
+if we are using different packages  
+@SpringBootApplication(
+scanBasePackages=("com.luv2code.springdemo","com.luv2code.util")
+
+Field Injection
+---------------
+It makes the coded harder to unit test
+Injecting dependencies by setting field values on your class directly
+
+@Qualifier
+-----------
+@Qualifier has higher priority
+
+@primary leaves it up to the implementation classes
+could have the issue of multiple @primary leading to an error
+ Recommed to use @Qualifier --very specific and higher priority
+
+
+Initialization:
+-----------
+by defaul when u r application starts, all beans are initialized 
+@Component etc
+
+Spring will create an instance of each and make them available
+
+in applicataion properties ::
+spring.main.lazy-initialization=true
+#all beans are lazy no  beans created untill needed
+
+
+Spring Boot Chad Darby code::
+----------------------------------
+
+traditional spring application is really hard
+which jar dependency do I need 
+How to set up configuation (xml or Java)
+How do i install the server (Tomcat & Jboss)
+------------
+Spring Boot
+minimize the amount of manual configuration
+perform autoconfiguration based on props files and JAR classpath
+helps to resolve dependency conflicts(maven & gradle)
+Embeded Server like tomcat,jetty and Undertow
+
+Spring Boot was developed on top of spring frame work
+Spring Intializer
+----------------
+select u r dependencies
+create a maven/gradle project
+
+Import Project in Eclipse,Intellj
+
+Deploy spring Boot Apps
+---------------------------
+Spring Boot Apps can be deployed in the traditional way
+Deploy war file to an external server tomacat,jboss and websphere 
+
+
+Does spring boot  replace Spring MVC, Spring Rest etc?
+No, Instead , Spring boot actually use those technologies
+
+Does Spring boot run code faster than regular Spring code
+No
+Behind the scenes,Spring Boot use same code of spring  framework
+
+
+Spring Boot Initialzr
+-------------------
+ Maven
+    when building your java project, you may need additional Jar files
+    Ex: Spring,hibernate, Commons Logging, JSON etc...
+One approch is to download JAR file from each project website
+manually add the JAR files to u r build path /class path
+
+Go to browser :
+start.spring.io
+
+spring boot take latest versions (Avoid snapshot versions)
+Give project details 
+--------------
+Group, Artifact name and description and packaging name
+Add dependecies 
+------Spring web
+click on Generate 
+it will download zip folder
+we need to unzio it 
+
+Go to IDE --select unzip folder with all subfolders open it 
+when we run application it will run on tomcat server on port 8080
+
+
+Spring Boot Rest Controller:
+----------------------------
+
+create a class anotated with @Restcontroller
+
+Spring Boot website official
+------------------------
+lightweight with Java POJOS
+Dependency Injection to promote loose coupling 
+minimize boilerpate jave code
+-----------
+
+Core Conatiner :
+----------
+bean factory is for creating beans and managing beans
+AOP : add functionality to objects declaratievely 
+-logging ,security,transaction,etc..
+Data AAccess Layer:: JDBC,ORM 
+WebLayer
+
+Spring Projects:
+-------------
+Spring modules built on top of Spring framework
+
+only use what need
+Spring Cloud, Spring Data
+Spring Batch, Spring security
+Spring Webservices , Spring LDAP 
+others
+
+
+Spring Boot Maven 
+-----------------------
+Maven project management tool
+most popular use of maven is build management and dependencies
+
+Maven Soulution 
+------------
+tell Maven the projects you are working with
+Spring, Hibernate etc.,
+maven will go out and download the jar files for those project
+maven will make jar files available during compile/run
+
+
+Standard Directory Structure
+-------------------------------
+src/main/java ---your java source code
+src/main/resources--properties/config files used by your app
+src/main/webapp--JSP files and web files other web assets(images,css,js,etc)
+src/test --unit testing code and properties
+target- destination directory for compiled code .automatically created by maven
+
+
+POM.xml
+-----------
+project meta data - project name,versionetc output file type: JAR,WAR.,
+dependencies --list of projects we depend on spring, hibernate etc.,
+plugins -- additional custom task to run : generate JUNIT test reports etc.,
+
+project coordinates ::
+--------------------
+Group Id : name of company, organization ::;convention to use reverse domain name :: com.luv2code
+Artifact Id : name of the project :: mycoolap
+version:: specific release version like :: 1.0,1.6,2.0
+if project under active development:: 1.0-SNAPSHAOT
+
+dependency::
+Group ID ,artifact ID and version id(optional)
+best approach use version id aswell
+
+----------------------------------
+Lets explore project structure 
+Maven wrapper files
+mvnw == allos u to run a maven project
+no need to have maven or installed or present on your path
+if correct version of maven not found on your computer --it automatically
+downloads correct version
+2 files mvnw.cmd  for MS windows  > mvnw clean compile test
+mnvw.sh for  Linux/max  $./mnvw clean compile test
+
+A collection of maven dependencies of compatible versions --Spring boot starters
+
+spring -boot-started-web  (Save developer from having list of individual dependencies)
+---------------------------
+spring -web
+spring -webmvc
+hibernate-validator
+tomcat
+json..
+
+Maven plugin::
+to package executable jar or war archive
+can also easy run the app
+
+-------------------------
+
+application. properties
+#configure server port
+server.port=8484
+
+#configure my props
+coach.name=Micky Mouse
+team. name=The Mouse Crew
+
+@RestController
+public class FunRestController{
+@Value("${coach.name}")
+private String coachName
+@Value("${team.name}")
+private String teamName;
+
+By default, Spring Boot will load static resources from "/static" directory
+Examples of static resources HTML Files,CSS, JS.images,etc..
+
+Templates
+spring boot includes auto configuration for fallowing template engines
+Free Maker
+Thymeleaf
+Mustace
+
+Unit Test
+---------
+spring boot u can customized test
+
+Spring boot Starter ::
+-------------
+curated list of maven dependencies
+a collections of dependencies groiupe dtogether
+tesed and verifiedd by spring dev team
+makes it is much easier for developer to get started with spring
+reduces the amount maven configuration
+
+
+--------------
+Spring boot starter parent
+----------------------------
+spring boot starter-*
+specify version for spring boot 
+it inherits version from starter parent
+no need to list individual versions --great for maintenance
+
+Spring Boot Dev Tools
+-----------------------
+spring boot dev tools to the rescue
+automatically restarts u r application when code is updated
+simply add the dependency in u r pom file 
+no need to write additional code
+
+Intellij community Edition not support devtools by default
+selcet Preferences >Build,Execution,Deployment>Compiler
+check Box : Build project aytomatically
+
+Additional setting 
+
+Preferences > advanced settings 
+compiler section
+check box : Allow auto make to
+
+
+Spring Boot Actuator::
+-----------------
+Exposes endpoint to monitor and manage your application
+You easily get DevOps functionality out of the box
+simply add the dependency to your pom file
+rest end points are automatically added to your application
+Automatically exposes endpoints for metrics out of the box
+End points are prefixed with /actuator
+/health --checks the status of u r application    ---up/down
+/info-- endpoint can provide information about your application
+
+in u application.properties
+------------------------
+management.endpoints.web.exposure.include=health,info
+management.info.env.enabled=true
+
+by default info is empty 
+update u r application.properties with u r app info
+
+info.app.name=My Super Cool App
+info.app.description=A crazy and fun app, ypphoo!
+info.app.version=1.0.0
+
+/auditevents --- Audit events for your application
+/beans -- List of all bean registered in the spring application context
+/mappings-- List of all @RequestMapping paths
+By default only /health is exposed 
+to expose all acutator endpoints over HTTP
+# use wildcard "*"to expose all endpoints
+#can also expose individual endpoints with comma-delimited list
+management.endpoints.web.exposure.include=*
+
+
+
+
+Spring boot security
+-----------------------
+not to expose all of this information
+if use spring security 
+it will prompt login for username & password 
+by default username =user and password will come in console 
+
+we can also ovveride these default username and password in application.properties
+
+spring.security.user.name=bunty
+spring.security.user.password=tiger
+
+Custmizing Spring Security  for Spring boot Actuator 
+use a database for roles,encrypted passwords etc
+Exclude endpoints
+
+#Exclude individual end points with comma - delimited list
+management.endpoints.web.exposure.exclude= health,info
+
+Spring Boot running from the command line
+------------------------------------------
+2 options
+1 Use jave -jar 
+2 Use spring boot Maven plugin
+mnvw spring-boot:run
+
+> java -jar mycoolapp.jar
+
+
+Use Spring boot Maven plugin
+------------------------------
+add maven plugin generated by spring Initializr
+
+for packaging use ./mvnw package
+for fun ./mnvw spring-boot:run
+
+
+Spring boot Custom Application Properties
+-------------------------------------
+by defaul,spring boot reads information from a standarf properties files
+located at src/main/resources/application.properties
+
+you can define any custom poperties in this file
+your spring boot app can access properties by usig @value
+
+Spring Boot ccan be configured in the application.properties file
+server port,context path, actuator,security etc
+
+server.servlet.context-path=/mycoolapp (base path URL)
+
+Inversion of control::
+-------------------
+the approach of outsourcing the constuction and management of objects
+
+
+Spring Container :
+--------------------
+primary function
+create and manage objects(IOC)
+Inject object dependencies(DI)
+
+Spring Dpendency Injection
+---------------------------
+the dependency inversion principle
+the client delegates to another object 
+the responsibility of providing its dependencies
+
+
+Injection types::
+-----------------
+Constructor Injection--use when we have required dependencies 
+genrally recommended by spring.io developemnt team as d
+Setter injection--use when we have optional dependencies
+if dependency is not provided ,your app can provide reasonable 
+default logic
+
+Autowiring::
+-------------
+
+@component ---marks the class as spring bean
+A Spring bean is just a regular java class that is managed by spring
+@component also makes the bean avaialable for dependency injection
+@Autowired annotation tells spring to inject a dependency
+if u  only have one constructor then Autowired on constructor is optional
+
+
+component scanning ::
+-----------------------
+spring will scan u r java classes for special annotations @component etc.,
+automatically register the beans in the spring container
+
+@SpringBootApplication::
+@EnableAutoConfiguration - enables spring boot auto configuration support
+@ComponentScan-- enables component scanning for packages also recursively sub packages
+@Configuration -- Able to register extra with @Beans 
+or import other cinfiguration classes
+
+behind the scenes 
+------------
+create application context and registers all beans
+starts the embedded server tomcat etc.,
+
+if we are using different packages  
+@SpringBootApplication(
+scanBasePackages=("com.luv2code.springdemo","com.luv2code.util")
+
+Field Injection
+---------------
+It makes the coded harder to unit test
+Injecting dependencies by setting field values on your class directly
+
+@Qualifier
+-----------
+@Qualifier has higher priority
+
+@primary leaves it up to the implementation classes
+could have the issue of multiple @primary leading to an error
+ Recommed to use @Qualifier --very specific and higher priority
+
+
+Initialization:
+-----------
+by defaul when u r application starts, all beans are initialized 
+@Component etc
+
+Spring will create an instance of each and make them available
+
+in applicataion properties ::
+spring.main.lazy-initialization=true
+#all beans are lazy no  beans created untill needed
+
+
+Component scanning is a feature in spring framework
+that automates the process of detecting and registering beans with the spring 
+container
+Instead of manually specifying beans in an XML file or Using java configuiration
+u can let spring automatically discover and wire your components
+based on annotation and classpath scanning
+
+
+---------------------
+Scope of Bean ::
+
+singleton: Only one instance of bean will be created for each spring conatiner
+the single instance is reused  whenever the bean is referred to
+
+prototype: A new instance of bean will be created each time it is requested or injected
+
+request : a single instance of bean will be created for each HTTP request
+              the instance is destroyed after the completion of the request
+
+session: 	A single instance of the bean will be created for each HTTP session. 
+                   The instance is destroyed after the session terminates.
+
+application:  A single instance of the bean will exist for the lifecycle of a ServletContext. 
+                  This is similar to a servlet context attribute in a web application.	Yes
+websocket:	A single instance of the bean will exist for the lifecycle of a WebSocket.
+
+
+
+@Entity
+--------
+An entity is a lightweight persistence domain object. 
+Typically, an entity represents a table in a relational database,
+ and each entity instance corresponds to a row in that table. 
+The primary programming artifact of an entity is the entity class, 
+although entities can use helper classes.
+
+@Table
+------------ 
+In Spring Boot it is used to specify the name of the database table to be used for mapping. 
+The annotation can be used to override the name of the table,
+ its catalog, and its schema.
+ It can also be used to enforce unique constraints on columns in the table.
+
+
+In Querying All JPQL syntax based on entity name and entity fields
+
+
+Spring Rest Services
+--------------------
+REST API :: Representational State Transfer
+Lightweight approach for communicating between applications
+Rest is program independent language 
+client can use any progamming language
+server can use any programming language 
+Rest application use any data format 
+commonly use XML and JSON 
+Rest calls can be made over HTTP
+Rest is Language Independent 
+
+------------------
+
+JSON - JavaScript Object Notation
+Lightweight data format for storing and exchanging data...plain text
+Language Independent... not just for JavaScript
+can use with any programming languages
+
+Simple Json::
+{
+"id" : 14,
+"firstName":"Ram",
+"lastName":"Pothineni",
+"active": true,
+"courses":null
+}
+//Number: no quoates
+String: in double quotes
+Boolean:true,false
+Nested JSON object
+Array
+null
+
+
+HTTP Request Message::
+--------------------------
+Request line : the HTTP command
+Header variables : request metadata
+Message body: contents of message
+
+HTTP Response Message::
+----------------------------
+Response line : server protocol and status code 
+Header variables :  response metadata
+Message body : contents of message
+
+
+HTTP Respoonse - Status Codes 
+----------------------------------
+100-199  Infromational
+200-299  Successful
+300-399  Redirection 
+400-499 Client error
+500-599  Server 
+
+MIME Content Types
+-----------------------
+The message format is described by MIME content type
+Multipurpose Internet Mail Extension
+
+basic syntax: type/sub-type
+
+Examples : text/html, text/plain
+application/json, application/xml
+
+-------------------------------------------
+
+Spring Rest Controller
+-----------------------
+
+we need to anotate class with @RestController 
+WebBrowser  vs PostMan
+
+for simple rest testing for GET requests 
+Web Browser and Postman both are similar
+
+Advanced Rest testing POST,PUT etc...
+Postman has much better support
+POSTing JSON data,setting content type
+passing HTTP request headers,authentication etc..
+
+for rest service take web dependency while creating project
+
+Java JSON DataBinding::
+-----------------------------
+Data binding is the process of converting JSON data to a Java POJO
+Spring uses the Jackson Project behind the scenes 
+Jackson handles data binding between JSON and Java POJO
+details on Jackson Project:
+
+Spring boot starter web automatically includes dependency for Jackson
+Details on Jackson Project
+
+JSON to Java POJO
+---------------------
+call setter method onpojo class
+Java POJO to Json 
+call getter method on pojo class
+
+Spring and Jackson Support
+-----------------------------
+when building spring REST applications
+spring will automatically handle Jackson Integration
+JSON data being passed to REST controller is converted to POJO
+Java object being returned from rest controller is converted to JSON
+
+
+
+Path Variable::
+-------------
+Path variable  is appended at end the URL
+Mainly used to retrive the data 
