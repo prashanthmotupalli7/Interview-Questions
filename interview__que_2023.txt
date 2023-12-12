@@ -1,0 +1,306 @@
+
+MANOJ KADAM
+==========================================================
+CORE JAVA QUESTIONS :
+
+basic :
+explain oops concepts .
+difference between jvm jre and jdk
+what is encapuslation ?
+what is abstraction ?
+what is constructor ?
+double vs float java :  float is 32 bits in size while a double is 64 bits. A double is twice the size of a float — thus the term double.
+Stack Vs Heap Java : 
+Difference between Constructors and Methods ?
+difference between abstract class and interface java 
+Can we create an object of an abstract class in Java ?
+what are the diff type of inheritance present in java ?
+is multiple inheritance supported in java ? How can we achieve mulptile inheritance in java ?
+is it possible to extends more than one class in java ?
+diff static vs instant variable
+diff between method overloading vs method overriding
+can we overload constructor in java ?
+can we overload static method in java ?
+can we override static method in java ?
+Can you override a private method in Java ?
+
+can child class reference hold parent class object ?
+What is singleton class in Java and how can we make a class singleton?
+difference between is a relationship and has a relationship in java
+Is-A relationship: Whenever one class inherits another class, it is called an IS-A relationship.
+Has-A relationship: Whenever an instance of one class is used in another class, it is called HAS-A relationship.
+
+
+advanced :
+design pattern 
+agile methodlogy 
+what is object class ?
+what are the different method present in object class ? getClass(),clone() , equal(),hashCode(),finalize(),toString(),wait(),notify(),notifyAll()
+what are the diff ways to create object in java ?  newInstance() , new keyword , clone() , serilizaiton
+what is marker interface ?
+What is the use of a transient variable?
+Can you access a non-static variable in the static context?
+can we overlaod main method ?
+
+
+3. What are the two ways of implementing thread in Java ?
+explain thread lifecycle
+9. What’s the difference between notify() and notifyAll()?
+18. How do threads communicate with each other?
+ans : Threads can communicate using three methods i.e., wait(), notify(), and notifyAll().
+public void yield(): causes the currently executing thread object to temporarily pause and allow other threads to execute.
+
+21. What is the synchronization process? Why use it ?
+ differences between wait() and join() and yield().
+wait is used for inter-thread commu and yeild is used to just offer opportunity to another running thread
+if join called on one thread in join one thread will not run until another thread end its excution.
+wait vs join 
+wait is mainly used for shared resources , a thread notifies other waiting thread when resources become free
+on other hand join is simply used for wating a thread to die.
+sleep : pause thread execution
+
+What is string constant pool in Java?
+Java String intern() ?
+15. What is garbage collection?
+difference between stringBuffer vs StringBuilder
+what are the wrapper classess available in java ?  autoboxing and unboxing parseXXX(),Integer.valuesOf(),.XxxValue()
+what is default value of integer wrapper class ?
+What is the difference between equals() and == in Java?
+
+
+what is exception ? Why do we need exception handling in Java?
+Can we just use try instead of finally and catch blocks?
+throws vs throw 
+how to created custom exception ?
+What is the difference between Checked and Unchecked Exception in Java?
+
+
+
+collection:
+different between arrays and collections 
+14) What is the difference between Collection and Collections?
+5) What is the difference between ArrayList and LinkedList?
+difference between arraylist and vector?
+8) What is the difference between List and Set? insertion order and unique dubplicate 
+11) What is the difference between HashSet and HashMap?  hashMap is faster 
+6)  What is the difference between Iterator and ListIterator?
+13) What is the difference between HashMap and Hashtable?
+15) What is the difference between Comparable and Comparator?
+What is the difference between HashSet and TreeSet?  null allow not allow , order not preseved preseved sort asendinng order, used equal() method compare() method
+What is the difference between HashMap and TreeMap? null key allow not allow,equals(),compareTo(),order not maintaned ,order (ascending).
+
+LinkedHashMap vs HashMap  : insertion order preseved not preserved
+
+what are the different interfaces are present in collection framework.
+is List is an interface or class ?
+what is default size of arrayList? 
+what is default bucket size of hashMap ?
+what will happened if I put 11th element in arraylist
+which method is used to clear arraylist ?
+
+explain interal structure of hashmap .
+ans : HashMap contains an array of Node and Node can represent a class having the following objects : 
+int hash
+K key
+V value
+Node next
+
+bucket is an element of the HashMap array. It is used to store nodes. Two or more nodes can have the same bucket. In that case, a link list structure is used to connect the nodes. Buckets are different in capacity. A relation between bucket and capacity is as follows: 
+capacity = number of buckets * load factor
+A single bucket can have more than one node, it depends on the hashCode() method. The better your hashCode() method is, the better your buckets will be utilized. 
+
+Calculate hash code of Key {“vishal”}. It will be generated as 118.
+Calculate index by using index method it will be 6.
+Create a node object 
+
+Place this object at index 6 if no other object is presented there.
+In this case, a node object is found at index 6 – this is a case of collision.
+In that case, check via the hashCode() and equals() method if both the keys are the same.
+If keys are the same, replace the value with the current value.
+Otherwise, connect this node object to the previous node object via linked list and both are stored at index 6. 
+
+
+
+load factor in hashmap ?
+default 75%
+Size of hashmap (m)/number of buckets (n)  
+
+In this case, the size of the hashmap is 1, and the bucket size is 16. So, 1/16=0.0625. Now compare this value with the default load factor.
+0.0625<0.75
+So, no need to increase the hashmap size.
+
+can we add map object inside list ? 
+what is concurrentHashMap ?
+what is copyOnWriteArrayList ? 
+when concurrentmodificationexception occured ?
+What is the difference between fail-safe and Fail-Fast iterators in Java?
+what is diff between classnot found and class def not found.
+
+
+
+JAVA 8 :
+what are the new features of java8 ?
+What is Lambda Expression ?
+What is Functional Interface ?
+what are the Functional Interfaces available in Java 8
+what is method refference ?
+what is the use of parallel stream ?
+what is the use of Optional ?
+how to convert list to map using stream api
+Map<Long, String> map2 = getEmployeeList().stream().collect(Collectors.toMap(Employee::getId, Employee::getName));
+what is terminal operator in java8
+
+		
+
+jsp questions :
+2) What are the life-cycle methods for a JSP?
+6) What are the JSP implicit objects?
+28) What is EL in JSP?
+Syntax for Expression Language (EL)
+
+
+
+
+
+servlet questions :
+
+life cycle in servlet  
+difference between requestdispatcher and sendRedirect 
+Listener 
+differece between request scope and session scope
+
+jsp vs servlet
+
+
+front end :
+diff tags in htmls
+long form of html
+document.ready vs onload
+what is ajax ?
+sytax of ajax in jquery
+diff between sync vs async ajax request
+
+
+
+
+
+Hibernate :
+
+2) What is ORM?	
+3) What are the core interfaces of Hibernate?
+7) What is SessionFactory?
+9) What is Session?
+11) What is the difference between session.save() and session.persist() method?
+12) What is the difference between get and load method?
+15) What are the states of the object in hibernate?
+18) What is lazy loading in hibernate ?
+19) 1st and 2nd level catche
+
+
+DATABASE SQL :
+
+EMPLOYEE TABLE 
+EMPID ,EMPNAME,EMPCODE,SALARY,FK_DEPTID,
+DEPARTMENT TABLE
+DEPTID,DEPTNAME,DEPTCODE
+
+write query to get max salary from employee table.
+write query to get 3rd highest salary from employee table.
+write query for join table.
+diff between left outer join and right outer join
+what is view ?
+what is procedure ?
+what is trigger ?
+how to get last three record from database ?
+diff between procedure and function
+what is contraint ?  SQL constraints are used to specify rules for the data in a table.
+diff between delete and truncate 
+what are the aggregate functions in sql ?
+diff between where clause and having clause .
+what is the use of Indexes ?
+Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.
+CREATE INDEX idx_pname ON Persons (LastName, FirstName);
+
+
+
+SPRING BOOT : 
+how to create spring boot application ?
+what is maven ?
+when we create spring boot app without adding any dependcy which are the dependcy present by default in pom.xml
+<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+what is the use of pom.xml ?
+what is the entry point of spring boot applicaton ?
+tell me some annotation present in spring boot framework.
+What does the @SpringBootApplication annotation do internally?
+what is the use of @ComponentScan @Configuration @EnableAutoConfiguration annotation ?
+what is metadata ?
+diff between @Component and @Bean ?
+what is the use of actuator ?
+how to get http hits in actuator ?
+#management.endpoints.web.exposure.include=httptrace
+22. What is the difference between @RestController and @Controller in Spring Boot?
+what are the diff request mapping present in spring boot ?
+24. What is the difference between RequestMapping and GetMapping?
+25. What is the use of Profiles in spring boot and how to active profile in spring boot ?
+how to change port number ?
+diff between yml and properties files
+how to declare list and map in yml file in spring boot
+33. What is dependency Injection?
+36.difference between @pathvariable and @requestparam
+what is the use of autowired annotation ?
+what are Types of bean Scope available in spring boot :
+what is diff between @primary and @Qualifier ?  
+transaction prapogation in spring boot ?
+
+
+
+microservices :
+
+What do you mean by Microservice?
+Explain the working of Microservice Architecture.
+Write difference between Monolithic, and Microservices Architecture.   :  technology change easyly,deployment process, diff database
+what is the use of Eureka in Microservices.
+what is api gateway ?
+what is spring cloud ?
+how to make dynamic routing using spring cloud ?
+what is the use of loadBalancing in spring boot ?
+
+angular :
+diff between ngIF and ngshow nghide
+how to create custom directive
+diff between let and var
+Sharing data between child and parent directives and components
+
+@Input() and @Output() give a child component a way to communicate with its parent component.
+ @Input() lets a parent component update data in the child component. Conversely,
+ @Output() lets the child send data to a parent component.
+
+child c
+
+import { Component, Input } from '@angular/core'; // First, import Input
+export class ItemDetailComponent {
+  @Input() item = ''; // decorate the property with @Input()
+}
+
+<app-item-detail [item]="currentItem"></app-item-detail>
+
+parent c
+
+export class AppComponent {
+  currentItem = 'Television';
+}
+
+
+
