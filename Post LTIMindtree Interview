@@ -12,8 +12,15 @@ array program to print zero's to the right of the array
 highest salary of an employe
 list the employee group by their department
 method refernce
+Can you write a Spring Boot REST controller with a base API /api/user? The controller should have two endpoints:
+ 
+1. A GET endpoint to fetch a user object by user ID.
+2. A POST endpoint to create a new user (/api/user). How to use Spring Validation?
 
+retrive the employe name age greater than 30 in sorted order by  their name 
+reverse of a string 
 
+pyramid  number pattern
 
 
 
